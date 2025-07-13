@@ -1,0 +1,12 @@
+{
+  "name": "daily-site-log-bot",
+  "description": "Logs and retrieves daily civil engineering site activities.",
+  "context_schema": {
+    "site_logs": {
+      "type": "object",
+      "description": "A dictionary of site activity logs keyed by date in YYYY-MM-DD format.",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "tasks": ["log_site_activity", "get_log_by_date"]
+}

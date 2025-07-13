@@ -1,4 +1,17 @@
-# model-context-protocol
+# 📝 daily-site-log-bot
+
+A lightweight CLI-friendly logging bot built with [Model Context Protocol](https://modelcontextprotocol.org), for recording and retrieving daily site activities.
+
+---
+
+## 🚀 Features
+
+- Log daily activities using MCP tools
+- Retrieve logs by date
+- Persists data in a local JSON file (`context.json`)
+- Simple integration via standard input/output
+
+---
 
 # Installation
 
