@@ -25,3 +25,5 @@ Download from: https://nodejs.org/en/download
 ```bash
 npm install @modelcontextprotocol/sdk
 ```
+## 3. Run MCP Server
+npx ts-node src/index.ts

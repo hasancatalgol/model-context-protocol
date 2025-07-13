@@ -68,4 +68,7 @@ server.tool(
 
 // Start server
 const transport = new StdioServerTransport();
-await server.connect(transport);
+(async () => {
+  console.log("✅ MCP Server is ready. Waiting for commands...");
+  await server.connect(transport);
+})();
