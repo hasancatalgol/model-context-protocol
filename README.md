@@ -1,4 +1,4 @@
-# 📝 daily-site-log-bot
+# 📝 Daily Site Log Bot
 
 A lightweight CLI-friendly logging bot built with [Model Context Protocol](https://modelcontextprotocol.org), for recording and retrieving daily site activities.
 
