@@ -23,6 +23,5 @@ Download from: https://nodejs.org/en/download
 ## 2. Install MCP TypeScript SDK
 
 ```bash
-npm init -y
 npm install @modelcontextprotocol/sdk
 ```
