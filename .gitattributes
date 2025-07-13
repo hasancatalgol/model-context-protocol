@@ -1,0 +1,20 @@
+# Normalize all text files to LF line endings
+* text=auto eol=lf
+
+# Treat JavaScript and TypeScript files as UTF-8
+*.js text diff
+*.ts text diff
+
+# Mark JSON and Markdown files as text
+*.json text
+*.md text
+
+# Ensure shell scripts use LF endings
+*.sh text eol=lf
+
+# Prevent linguist from marking node_modules as source
+node_modules/** linguist-vendored
+
+# Optional: Improve GitHub language stats (e.g. count TypeScript over JS if preferred)
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
