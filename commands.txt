@@ -1,1 +1,3 @@
+npx init
 npx tsc -> Compile and creates .js file from .ts
+npx ts-node src/index.ts -> Runs the MCP script

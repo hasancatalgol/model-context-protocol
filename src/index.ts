@@ -9,9 +9,14 @@ const CONTEXT_FILE = "./context.json";
 // Load logs from file
 function loadLogs(): Record<string, string> {
   if (fs.existsSync(CONTEXT_FILE)) {
-    const raw = fs.readFileSync(CONTEXT_FILE, "utf-8");
-    const parsed = JSON.parse(raw);
-    return parsed.site_logs ?? {};
+    try {
+      const raw = fs.readFileSync(CONTEXT_FILE, "utf-8");
+      const parsed = JSON.parse(raw);
+      return parsed.site_logs ?? {};
+    } catch (err) {
+      console.error("❌ Failed to parse context.json:", err);
+      return {};
+    }
   }
   return {};
 }
@@ -25,7 +30,18 @@ function saveLogs(logs: Record<string, string>) {
 let siteLogs = loadLogs();
 
 // Setup MCP server
-const server = new McpServer({ name: "daily-site-log-bot", version: "1.0.0" });
+const server = new McpServer({
+  name: "daily-site-log-bot",
+  version: "1.0.0"
+});
+
+// MCP handshake (Claude Desktop expects this on startup)
+console.log(JSON.stringify({
+  type: "mcp_server_metadata",
+  name: "daily-site-log-bot",
+  description: "Logs and retrieves daily civil engineering site activities.",
+  version: "1.0.0"
+}));
 
 // Tool: log_site_activity
 server.tool(
@@ -37,6 +53,9 @@ server.tool(
   async ({ date, entry }) => {
     siteLogs[date] = entry;
     saveLogs(siteLogs);
+
+    console.error(`✅ siteLogs updated: ${JSON.stringify(siteLogs, null, 2)}`);
+
     return {
       content: [
         { type: "text", text: `✅ Logged activity for ${date}.` }
@@ -66,9 +85,10 @@ server.tool(
   }
 );
 
+
+
 // Start server
 const transport = new StdioServerTransport();
 (async () => {
-  console.log("✅ MCP Server is ready. Waiting for commands...");
   await server.connect(transport);
 })();
